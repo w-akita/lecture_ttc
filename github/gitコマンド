@@ -1,0 +1,33 @@
+docker network ls
+docker network inspect bridge
+  # => SubnetとGatewayが表示されたと思います。
+
+apk update
+apk add bridge
+brctl show
+  # => docker0という名前のbridgeが定義されている。
+ip a
+  # => docker0というbridgeが一つのネットワークインターフェースになっている。
+
+docker run -dt ubuntu sleep infinity
+docker ps
+brctl show
+  # => vethと接続されている。
+ip a
+  # =>
+
+docker network inspect bridge
+
+docker ps
+  # => コンテナIDを控える
+docker stop <yourcontainerid>
+
+
+
+[node1] (local) root@192.168.0.48 ~
+$ history
+    1  docker run --name web1 -d -p 8080:80 nginx
+    2  curl localhost:8080
+    3  apt install -y traceroute
+    4  apt update
+    5  history
